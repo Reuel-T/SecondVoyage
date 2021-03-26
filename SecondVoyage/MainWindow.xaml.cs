@@ -23,6 +23,49 @@ namespace SecondVoyage
         public MainWindow()
         {
             InitializeComponent();
+            lsbVrooms.ItemsSource = ListHolder.GetInstance().Vrooms;
+            btnRemove.IsEnabled = false;
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            AddVroomWindow avm = new AddVroomWindow();
+            avm.Show();
+            
+        }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            ListHolder.GetInstance().Vrooms.Remove((Vroom)lsbVrooms.SelectedItem);
+        }
+
+        private void lsbVrooms_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lsbVrooms.SelectedIndex > -1) 
+            {
+                btnRemove.IsEnabled = true;
+            }
+            else 
+            {
+                btnRemove.IsEnabled = false;
+            }
+        }
+
+        private void btnReport_Click(object sender, RoutedEventArgs e)
+        {
+            if(lsbVrooms.Items.Count > 0) 
+            {
+                ReportWindow rw = new ReportWindow();
+                rw.Show();
+            }
+        }
+
+        private void btnSell_Click(object sender, RoutedEventArgs e)
+        {
+            if (lsbVrooms.SelectedIndex > -1) 
+            {
+                (lsbVrooms.SelectedItem as Vroom).Sales++;
+            }
         }
     }
 }

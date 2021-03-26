@@ -19,7 +19,11 @@ namespace SecondVoyage
             Price = price;
             Color = color;
             Sales = qty;
+        }
 
+        public void Sell() 
+        { 
+            Sales++; 
         }
     }
 }

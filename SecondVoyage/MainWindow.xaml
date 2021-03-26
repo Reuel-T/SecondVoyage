@@ -5,9 +5,68 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SecondVoyage"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="451" Width="500">
     <Grid>
-        <Button Content="A Button" x:Name="btnSomething" HorizontalAlignment="Left" Margin="121,50,0,0" VerticalAlignment="Top"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50px"/>
+            <ColumnDefinition Width="200px"/>
+            <ColumnDefinition Width="50px"/>
+            <ColumnDefinition Width="150px"/>
+            <ColumnDefinition Width="50px"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50px"/>
+            <RowDefinition Height="30px"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50px"/>
+        </Grid.RowDefinitions>
+
+        <ListBox x:Name="lsbVrooms" Grid.Column="1" Grid.Row="2" Grid.RowSpan="4" ItemsSource="{Binding}" SelectionChanged="lsbVrooms_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="{x:Type local:Vroom}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Path=Make}"></TextBlock>
+                        <TextBlock Text="{Binding Path=Model}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Button
+            x:Name="btnAdd"
+            Content="Add Vroom"
+            Grid.Column="3"
+            Grid.Row="2"
+            Margin="10px, 25px" Click="btnAdd_Click"/>
+
+        <Button 
+            x:Name="btnSell"
+            Content="Sell Vroom"
+            Grid.Column="3"
+            Grid.Row="3"
+            Margin="10px, 25px" Click="btnSell_Click"/>
+
+        <Button 
+            x:Name="btnRemove"
+            Content="Remove Vroom"
+            Grid.Column="3"
+            Grid.Row="4"
+            Margin="10px, 25px" Click="btnRemove_Click"/>
+
+        <Button 
+            x:Name="btnReport"
+            Content="View Report"
+            Grid.Column="3"
+            Grid.Row="5"
+            Margin="10px, 25px" Click="btnReport_Click" />
+
+
+
+        <Label Content="Available Vrooms" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
+
 
     </Grid>
 </Window>
